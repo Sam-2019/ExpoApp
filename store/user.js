@@ -5,6 +5,11 @@ class User {
   sum = 0;
   loggedIn = false;
   status = "";
+  firstName;
+  lastName;
+  userName;
+  email;
+
 
   constructor() {
     makeAutoObservable(this);
