@@ -49,7 +49,7 @@ export default function Login() {
 
         <Spacer />
 
-        <TouchableHighlight onPress={() => login()}>
+        <TouchableHighlight onPress={() => login({ userName, password })}>
           <View style={buttonStyle.primary}>
             <Text>Login</Text>
           </View>
