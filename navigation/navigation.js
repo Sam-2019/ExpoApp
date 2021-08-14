@@ -8,8 +8,10 @@ import NotFoundScreen from "../screens/NotFoundScreen";
 import Home from "../components/Home";
 import Login from "../components/Login";
 import Signup from "../components/Signup";
+import ForgotPassword from "../components/ForgotPassword";
 
 import { userStore } from "../actions/actions";
+
 
 const Navigation = observer(() => {
 
@@ -40,6 +42,7 @@ function Authentication() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Signup" component={Signup} />
+      <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
     </Stack.Navigator>
   );
 }
