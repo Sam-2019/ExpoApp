@@ -16,6 +16,6 @@ export const logout = () => {
   userStore.logout();
 };
 
-export const forgotPassword = () => {
+export const forgotPassword = ({email}) => {
   resetPassword({ email });
 };

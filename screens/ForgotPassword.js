@@ -28,7 +28,7 @@ export default function ForgotPassword() {
           placeholder="Email"
         />
 
-        <TouchableHighlight onPress={() => forgotPassword()}>
+        <TouchableHighlight onPress={() => forgotPassword({email})}>
           <View style={buttonStyle.primary}>
             <Text>Send Password Rseset</Text>
           </View>
