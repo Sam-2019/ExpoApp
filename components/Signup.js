@@ -1,19 +1,12 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Button,
-  Alert,
-  TextInput,
-  TouchableHighlight,
-} from "react-native";
+import { View, Text, Alert, TextInput, TouchableHighlight } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Spacer from "./Spacer";
 
 import { inputStyle } from "../styles/input";
 import { textStyle } from "../styles/text";
 import { buttonStyle } from "../styles/button";
+import { viewContainer } from "../styles/container";
 
 export default function Signup() {
   const [firstName, setFirstName] = React.useState("");
@@ -24,7 +17,7 @@ export default function Signup() {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <View style={viewContainer.container}>
       <Text style={textStyle.header}>Signup</Text>
 
       <View>
@@ -76,11 +69,3 @@ export default function Signup() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    marginHorizontal: 16,
-  },
-});

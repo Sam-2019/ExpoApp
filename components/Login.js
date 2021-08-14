@@ -1,10 +1,10 @@
 import React from "react";
 import {
-  StyleSheet,
   View,
   Text,
   TextInput,
   TouchableHighlight,
+  TouchableWithoutFeedback,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import Spacer from "./Spacer";
@@ -12,6 +12,7 @@ import Spacer from "./Spacer";
 import { inputStyle } from "../styles/input";
 import { textStyle } from "../styles/text";
 import { buttonStyle } from "../styles/button";
+import { viewContainer } from "../styles/container";
 import { login } from "../actions/actions";
 
 export default function Login() {
@@ -21,7 +22,7 @@ export default function Login() {
   const navigation = useNavigation();
 
   return (
-    <View style={styles.container}>
+    <View style={viewContainer.container}>
       <Text style={textStyle.header}>Login</Text>
 
       <View>
@@ -37,6 +38,16 @@ export default function Login() {
           value={password}
           placeholder="Password"
         />
+
+        <TouchableWithoutFeedback
+          onPress={() => navigation.navigate("ForgotPassword")}
+        >
+          <View style={buttonStyle.secondaryText}>
+            <Text style={textStyle.forgotPassword}>Forgotten Password?</Text>
+          </View>
+        </TouchableWithoutFeedback>
+
+        <Spacer />
 
         <TouchableHighlight onPress={() => login()}>
           <View style={buttonStyle.primary}>
@@ -66,11 +77,3 @@ export default function Login() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    marginHorizontal: 16,
-  },
-});

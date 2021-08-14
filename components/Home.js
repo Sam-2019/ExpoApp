@@ -1,12 +1,12 @@
 import React from "react";
 import {
-  StyleSheet,
   View,
   Text,
   TouchableHighlight,
 } from "react-native";
 
 import { buttonStyle } from "../styles/button";
+import { viewContainer } from "../styles/container";
 import Spacer from "./Spacer";
 
 import { observer } from "mobx-react-lite";
@@ -14,7 +14,7 @@ import { logout, increment, userStore } from "../actions/actions";
 
 const Home = observer(() => {
   return (
-    <View style={styles.container}>
+    <View style={viewContainer.container}>
       <Text>Home</Text>
       <Text>{userStore.sum}</Text>
       <Spacer />
@@ -31,14 +31,6 @@ const Home = observer(() => {
       </TouchableHighlight>
     </View>
   );
-});
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    marginHorizontal: 16,
-  },
 });
 
 export default Home;
