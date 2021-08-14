@@ -1,16 +1,29 @@
 import { makeAutoObservable, runInAction } from "mobx";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 class User {
   sum = 0;
-  loggedIn = true;
+  loggedIn = false;
   status = "";
 
   constructor() {
     makeAutoObservable(this);
+    this.checkSession = this.loggedIn;
   }
 
   add() {
     this.sum += 1;
+    AsyncStorage.setItem("fooObject", "value");
+  }
+
+  async checkSession() {
+    try {
+      const result = await AsyncStorage.getItem("fooObject");
+      if (!result) return;
+      this.loggedIn = true;
+    } catch (error) {
+      this.status = "error";
+    }
   }
 
   async login() {
