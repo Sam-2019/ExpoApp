@@ -12,6 +12,7 @@ import Signup from "../components/Signup";
 import { userStore } from "../actions/actions";
 
 const Navigation = observer(() => {
+
   return (
     <NavigationContainer>
       {!userStore.loggedIn ? <Authentication /> : <Main />}
