@@ -1,30 +1,19 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Animated, Text, View } from "react-native";
+import { usePulse } from "../hooks/usePulse";
+import { textStyle } from "../styles/text";
+import { viewContainer } from "../styles/container";
 
-export default function FirstTime() {
+const FirstTimePage = () => {
+  const Scale = usePulse();
+
   return (
-    <View>
-      <View style={styles.getStartedContainer}>
-        <Text
-          style={styles.getStartedText}
-          lightColor="rgba(0,0,0,0.8)"
-          darkColor="rgba(255,255,255,0.8)"
-        >
-          First Time
-        </Text>
-      </View>
+    <View style={viewContainer.container}>
+      <Animated.View style={[{ transform: [{ scale: Scale }] }]}>
+        <Text style={textStyle.loadingText}>App Logo</Text>
+      </Animated.View>
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  getStartedContainer: {
-    alignItems: "center",
-    marginHorizontal: 50,
-  },
-  getStartedText: {
-    fontSize: 17,
-    lineHeight: 24,
-    textAlign: "center",
-  },
-});
+export default FirstTimePage;
