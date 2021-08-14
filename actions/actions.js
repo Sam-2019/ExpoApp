@@ -13,3 +13,8 @@ export const login = () => {
 export const logout = () => {
   userStore.logout();
 };
+
+
+export const forgotPassword = () => {
+ 
+};
