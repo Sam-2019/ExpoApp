@@ -17,4 +17,4 @@ export const StoreProvider = ({ children }) => {
   );
 };
 
-export const rootContext = () => React.useContext(StoreContext);
+export const rootContext = () => useContext(StoreContext);
