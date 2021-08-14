@@ -7,11 +7,13 @@ import { inputStyle } from "../styles/input";
 import { textStyle } from "../styles/text";
 import { buttonStyle } from "../styles/button";
 import { viewContainer } from "../styles/container";
+import { signup } from "../actions/auth";
 
 export default function Signup() {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
   const [userName, setUserName] = React.useState("");
+  const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
   const navigation = useNavigation();
@@ -42,12 +44,21 @@ export default function Signup() {
 
         <TextInput
           style={inputStyle.input}
+          onChangeText={(text) => setEmail(text)}
+          value={email}
+          placeholder="Email"
+        />
+
+        <TextInput
+          style={inputStyle.input}
           onChangeText={(text) => setPassword(text)}
           value={password}
           placeholder="Password"
         />
         <TouchableHighlight
-          onPress={() => Alert.alert("Simple Button pressed")}
+          onPress={() =>
+            signup({ firstName, lastName, userName, email, password })
+          }
         >
           <View style={buttonStyle.primary}>
             <Text>Signup</Text>
