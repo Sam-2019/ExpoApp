@@ -9,4 +9,7 @@ export const textStyle = StyleSheet.create({
     // textAlign: "center",
     marginBottom: 10,
   },
+  forgotPassword: {
+    textAlign: 'right'
+  }
 });
