@@ -7,7 +7,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import Spacer from "./Spacer";
+import Spacer from "../components/Spacer";
 
 import { inputStyle } from "../styles/input";
 import { textStyle } from "../styles/text";

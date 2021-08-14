@@ -7,7 +7,7 @@ import {
 
 import { buttonStyle } from "../styles/button";
 import { viewContainer } from "../styles/container";
-import Spacer from "./Spacer";
+import Spacer from "../components/Spacer";
 
 import { observer } from "mobx-react-lite";
 import { logout, increment, userStore } from "../actions/actions";

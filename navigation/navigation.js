@@ -5,10 +5,10 @@ import { observer } from "mobx-react-lite";
 
 import NotFoundScreen from "../screens/NotFoundScreen";
 
-import Home from "../components/Home";
-import Login from "../components/Login";
-import Signup from "../components/Signup";
-import ForgotPassword from "../components/ForgotPassword";
+import Home from "../screens/Home";
+import Login from "../screens/Login";
+import Signup from "../screens/Signup";
+import ForgotPassword from "../screens/ForgotPassword";
 
 import { userStore } from "../actions/actions";
 

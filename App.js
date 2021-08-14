@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import FirstTimePage from "./components/FirstTime";
+import FirstTimePage from "./screens/FirstTime";
 import Main from "./Main";
 import { StoreProvider } from "./store/root";
 
