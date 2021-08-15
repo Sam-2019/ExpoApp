@@ -1,49 +1,74 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import Parse, { ParserInit } from "../core/config/parse";
+import { rootStore } from "../store/root";
+
+export const { userStore } = rootStore;
+
+
 
 ParserInit();
-
-const user = new Parse.Object("User");
 
 export const signup = async ({
   firstName,
   lastName,
-  userName,
+  username,
   email,
   password,
 }) => {
-  try {
-    user.set("firstName", firstName);
-    user.set("lastName", lastName);
-    user.set("userName", userName);
-    user.set("email", email);
-    user.set("password", password);
+  const user = new Parse.User();
+  user.set("firstName", firstName);
+  user.set("lastname", lastName);
+  user.set("username", username);
+  user.set("email", email);
+  user.set("password", password);
 
-    await user.save();
+  try {
+    await user.signUp();
     console.log(user);
   } catch (error) {
-    console.log("Error saving new person: ", error);
+    console.log("Error: " + error.code + " " + error.message);
   }
 };
 
-export const login = async ({ userName, password }) => {
+export const login = async ({ username, password }) => {
   try {
-    user.set("userName", userName);
-    user.set("password", password);
+    const user = await Parse.User.logIn({ username, password });
 
-    //   await user.save();
+    userStore.userDetails({user, loggedIn = true});
+
     console.log(user);
   } catch (error) {
-    console.log("Error saving new person: ", error);
+    console.log("Error: ", error);
   }
 };
 
 export const resetPassword = async ({ email }) => {
   try {
-    user.set("email", email);
-
-    //   await user.save();
+    const user = await Parse.User.requestPasswordReset({ email });
     console.log(user);
   } catch (error) {
-    console.log("Error saving new person: ", error);
+    console.log("Error: ", error);
+  }
+};
+
+export const currentUser = async () => {
+  try {
+    const user = await Parse.User.currentAsync();
+    userStore.userDetails({user, loggedIn = true});
+    console.log(user);
+  } catch (error) {
+    console.log("Error: ", error);
+  }
+};
+
+export const logout = async () => {
+  try {
+    const user = await Parse.User.logOut();
+    userStore.userDetails({user,loggedIn = false});
+
+    console.log(user);
+  } catch (error) {
+    console.log("Error: ", error);
   }
 };
