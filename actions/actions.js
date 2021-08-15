@@ -14,19 +14,19 @@ export const increment = () => {
 };
 
 export const login = ({ username, password }) => {
-  authLogin({ username, password });
+  authLogin(username, password);
 };
 
 export const signup = ({ firstName, lastName, username, email, password }) => {
-  authSignup({ firstName, lastName, username, email, password });
+  authSignup(firstName, lastName, username, email, password);
+};
+
+export const forgotPassword = ({ email }) => {
+  authResetPassword(email);
 };
 
 export const logout = () => {
   authLogout();
-};
-
-export const forgotPassword = ({ email }) => {
-  authResetPassword({ email });
 };
 
 export const currentUser = () => {
