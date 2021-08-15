@@ -18,14 +18,14 @@ class User {
     this.sum += 1;
   }
 
-  async userDetails(user, loggedIn) {
+  async userDetails(attributes, loggedIn) {
     try {
       runInAction(() => {
-        this.firstName = user.firstName;
-        this.lastName = user.lastName;
-        this.username = user.username;
-        this.email = user.email;
         this.loggedIn = loggedIn;
+        this.firstName = attributes.firstName;
+        this.lastName = attributes.lastName;
+        this.username = attributes.username;
+        this.email = attributes.email;
       });
     } catch (e) {
       runInAction(() => {
