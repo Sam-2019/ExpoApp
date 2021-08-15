@@ -56,9 +56,7 @@ export default function Signup() {
           placeholder="Password"
         />
         <TouchableHighlight
-          onPress={() =>
-            signup({ firstName, lastName, username, email, password })
-          }
+          onPress={() => signup(firstName, lastName, username, email, password)}
         >
           <View style={buttonStyle.primary}>
             <Text>Signup</Text>
