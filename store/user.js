@@ -1,4 +1,5 @@
 import { makeAutoObservable, runInAction } from "mobx";
+import { currentUser } from "../actions/auth";
 
 class User {
   sum = 0;
@@ -11,14 +12,13 @@ class User {
 
   constructor() {
     makeAutoObservable(this);
-    this.checkSession = this.loggedIn;
   }
 
   add() {
     this.sum += 1;
   }
 
-  async userDetails({ user, loggedIn }) {
+  async userDetails(user, loggedIn) {
     try {
       runInAction(() => {
         this.firstName = user.firstName;
@@ -26,6 +26,20 @@ class User {
         this.username = user.username;
         this.email = user.email;
         this.loggedIn = loggedIn;
+      });
+    } catch (e) {
+      runInAction(() => {
+        this.status = "error";
+      });
+    }
+  }
+
+  async checkAuth() {
+    try {
+      runInAction(() => {
+        const data = currentUser();
+        if (!data) return;
+        this.loggedIn = false;
       });
     } catch (e) {
       runInAction(() => {
