@@ -12,7 +12,7 @@ import { signup } from "../actions/auth";
 export default function Signup() {
   const [firstName, setFirstName] = React.useState("");
   const [lastName, setLastName] = React.useState("");
-  const [userName, setUserName] = React.useState("");
+  const [username, setUserName] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -38,7 +38,7 @@ export default function Signup() {
         <TextInput
           style={inputStyle.input}
           onChangeText={(text) => setUserName(text)}
-          value={userName}
+          value={username}
           placeholder="Username"
         />
 
@@ -57,7 +57,7 @@ export default function Signup() {
         />
         <TouchableHighlight
           onPress={() =>
-            signup({ firstName, lastName, userName, email, password })
+            signup({ firstName, lastName, username, email, password })
           }
         >
           <View style={buttonStyle.primary}>

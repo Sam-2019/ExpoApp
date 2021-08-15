@@ -16,7 +16,7 @@ import { viewContainer } from "../styles/container";
 import { login } from "../actions/actions";
 
 export default function Login() {
-  const [userName, setUserName] = React.useState("");
+  const [username, setUserName] = React.useState("");
   const [password, setPassword] = React.useState("");
 
   const navigation = useNavigation();
@@ -29,7 +29,7 @@ export default function Login() {
         <TextInput
           style={inputStyle.input}
           onChangeText={(text) => setUserName(text)}
-          value={userName}
+          value={username}
           placeholder="Username"
         />
         <TextInput
@@ -49,7 +49,9 @@ export default function Login() {
 
         <Spacer />
 
-        <TouchableHighlight onPress={() => login({ userName, password })}>
+        <TouchableHighlight
+          onPress={() => login({ String: username, String: password })}
+        >
           <View style={buttonStyle.primary}>
             <Text>Login</Text>
           </View>
