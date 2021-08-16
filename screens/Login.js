@@ -69,14 +69,6 @@ export default function Login() {
                   <Text>Login</Text>
                 </View>
               </TouchableHighlight>
-              {/* 
-              <Spacer />
-
-              <TouchableHighlight>
-                <View style={buttonStyle.primary}>
-                  <Text>Clear</Text>
-                </View>
-              </TouchableHighlight> */}
 
               <Spacer />
 
