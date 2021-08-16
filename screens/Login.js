@@ -2,19 +2,19 @@ import React from "react";
 import {
   View,
   Text,
-  TextInput,
   TouchableHighlight,
   TouchableWithoutFeedback,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Formik } from "formik";
+import { Formik, Field } from "formik";
 import Spacer from "../components/Spacer";
 
-import { inputStyle } from "../styles/input";
 import { textStyle } from "../styles/text";
 import { buttonStyle } from "../styles/button";
 import { viewContainer } from "../styles/container";
 import { login } from "../actions/actions";
+import { loginSchema } from "../components/schemaValidation";
+import { CustomInput } from "../components/TextInput";
 
 export default function Login() {
   const navigation = useNavigation();
@@ -25,25 +25,31 @@ export default function Login() {
 
       <View>
         <Formik
-          initialValues={{ username: "", password: "" }}
-          onSubmit={(values) => login(values)}
+          initialValues={{ email: "", password: "" }}
+          validationSchema={loginSchema}
+          onSubmit={(values, { setSubmitting }) =>
+            setTimeout(() => {
+              login(values);
+              setSubmitting(false);
+            }, 400)
+          }
         >
-          {({ handleChange, handleBlur, handleSubmit, values }) => (
+          {({ handleChange, handleBlur, handleSubmit }) => (
             <View>
-              <TextInput
-                placeholder="Username"
-                style={inputStyle.input}
-                onChangeText={handleChange("username")}
-                onBlur={handleBlur("username")}
-                value={values.username}
+              <Field
+                name="email"
+                placeholder="Email"
+                onChangeText={handleChange("email")}
+                onBlur={handleBlur("email")}
+                component={CustomInput}
               />
 
-              <TextInput
+              <Field
+                name="password"
                 placeholder="Password"
-                style={inputStyle.input}
                 onChangeText={handleChange("password")}
                 onBlur={handleBlur("password")}
-                value={values.password}
+                component={CustomInput}
               />
 
               <TouchableWithoutFeedback

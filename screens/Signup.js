@@ -1,14 +1,15 @@
 import React from "react";
-import { View, Text, Alert, TextInput, TouchableHighlight } from "react-native";
+import { View, Text, TouchableHighlight } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { Formik } from "formik";
+import { Formik, Field } from "formik";
 import Spacer from "../components/Spacer";
 
-import { inputStyle } from "../styles/input";
 import { textStyle } from "../styles/text";
 import { buttonStyle } from "../styles/button";
 import { viewContainer } from "../styles/container";
 import { signup } from "../actions/auth";
+import { SignupSchema } from "../components/schemaValidation";
+import { CustomInput } from "../components/TextInput";
 
 export default function Signup() {
   const navigation = useNavigation();
@@ -25,48 +26,54 @@ export default function Signup() {
           email: "",
           password: "",
         }}
-        onSubmit={(values) => signup(values)}
+        validationSchema={SignupSchema}
+        onSubmit={(values, { setSubmitting }) =>
+          setTimeout(() => {
+            signup(values);
+            setSubmitting(false);
+          }, 400)
+        }
       >
-        {({ handleChange, handleBlur, handleSubmit, values }) => (
+        {({ handleChange, handleBlur, handleSubmit }) => (
           <View>
-            <TextInput
+            <Field
               placeholder="First Name"
-              style={inputStyle.input}
+              name="firstname"
               onChangeText={handleChange("firstname")}
               onBlur={handleBlur("firstname")}
-              value={values.firstname}
+              component={CustomInput}
             />
 
-            <TextInput
+            <Field
               placeholder="Last Name"
-              style={inputStyle.input}
+              name="lastname"
               onChangeText={handleChange("lastname")}
               onBlur={handleBlur("lastname")}
-              value={values.lastname}
+              component={CustomInput}
             />
 
-            <TextInput
+            <Field
               placeholder="Username"
-              style={inputStyle.input}
+              name="username"
               onChangeText={handleChange("username")}
               onBlur={handleBlur("username")}
-              value={values.username}
+              component={CustomInput}
             />
 
-            <TextInput
+            <Field
               placeholder="Email"
-              style={inputStyle.input}
+              name="email"
               onChangeText={handleChange("email")}
               onBlur={handleBlur("email")}
-              value={values.email}
+              component={CustomInput}
             />
 
-            <TextInput
+            <Field
               placeholder="Password"
-              style={inputStyle.input}
+              name="password"
               onChangeText={handleChange("password")}
               onBlur={handleBlur("password")}
-              value={values.password}
+              component={CustomInput}
             />
 
             <TouchableHighlight onPress={handleSubmit}>
