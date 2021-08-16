@@ -5,8 +5,8 @@ class User {
   sum = 0;
   loggedIn = false;
   status = "";
-  firstName;
-  lastName;
+  firstname;
+  lastname;
   username;
   email;
 
@@ -22,8 +22,8 @@ class User {
     try {
       runInAction(() => {
         this.loggedIn = loggedIn;
-        this.firstName = attributes.firstName;
-        this.lastName = attributes.lastName;
+        this.firstname = attributes.firstname;
+        this.lastname = attributes.lastname;
         this.username = attributes.username;
         this.email = attributes.email;
       });
