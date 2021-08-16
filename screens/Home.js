@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  View,
-  Text,
-  TouchableHighlight,
-} from "react-native";
+import { View, Text, TouchableHighlight } from "react-native";
 
 import { buttonStyle } from "../styles/button";
 import { viewContainer } from "../styles/container";
@@ -17,6 +13,10 @@ const Home = observer(() => {
     <View style={viewContainer.container}>
       <Text>Home</Text>
       <Text>{userStore.sum}</Text>
+      <Text>{userStore.firstname}</Text>
+      <Text>{userStore.lastname}</Text>
+      <Text>{userStore.username}</Text>
+      <Text>{userStore.email}</Text>
       <Spacer />
       <TouchableHighlight onPress={() => increment()}>
         <View style={buttonStyle.primary}>

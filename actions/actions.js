@@ -13,16 +13,17 @@ export const increment = () => {
   userStore.add();
 };
 
-export const login = (username, password) => {
-  authLogin(username, password);
+export const login = (values) => {
+  // console.log(values);
+  authLogin(values);
 };
 
-export const signup = (firstName, lastName, username, email, password) => {
-  authSignup(firstName, lastName, username, email, password);
+export const signup = (values) => {
+  authSignup(values);
 };
 
-export const forgotPassword = (email) => {
-  authResetPassword(email);
+export const forgotPassword = (values) => {
+  authResetPassword(values);
 };
 
 export const logout = () => {
