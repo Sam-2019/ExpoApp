@@ -14,7 +14,6 @@ export const increment = () => {
 };
 
 export const login = (values) => {
-  // console.log(values);
   authLogin(values);
 };
 
