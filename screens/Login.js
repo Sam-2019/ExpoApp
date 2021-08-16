@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { Formik } from "formik";
 import Spacer from "../components/Spacer";
 
 import { inputStyle } from "../styles/input";
@@ -16,9 +17,6 @@ import { viewContainer } from "../styles/container";
 import { login } from "../actions/actions";
 
 export default function Login() {
-  const [username, setUserName] = React.useState("");
-  const [password, setPassword] = React.useState("");
-
   const navigation = useNavigation();
 
   return (
@@ -26,53 +24,68 @@ export default function Login() {
       <Text style={textStyle.header}>Login</Text>
 
       <View>
-        <TextInput
-          style={inputStyle.input}
-          onChangeText={(text) => setUserName(text)}
-          value={username}
-          placeholder="Username"
-        />
-        <TextInput
-          style={inputStyle.input}
-          onChangeText={(text) => setPassword(text)}
-          value={password}
-          placeholder="Password"
-        />
-
-        <TouchableWithoutFeedback
-          onPress={() => navigation.navigate("ForgotPassword")}
+        <Formik
+          initialValues={{ username: "", password: "" }}
+          onSubmit={(values) => login(values)}
         >
-          <View style={buttonStyle.secondaryText}>
-            <Text style={textStyle.forgotPassword}>Forgotten Password?</Text>
-          </View>
-        </TouchableWithoutFeedback>
+          {({ handleChange, handleBlur, handleSubmit, values }) => (
+            <View>
+              <TextInput
+                placeholder="Username"
+                style={inputStyle.input}
+                onChangeText={handleChange("username")}
+                onBlur={handleBlur("username")}
+                value={values.username}
+              />
 
-        <Spacer />
+              <TextInput
+                placeholder="Password"
+                style={inputStyle.input}
+                onChangeText={handleChange("password")}
+                onBlur={handleBlur("password")}
+                value={values.password}
+              />
 
-        <TouchableHighlight onPress={() => login(username, password)}>
-          <View style={buttonStyle.primary}>
-            <Text>Login</Text>
-          </View>
-        </TouchableHighlight>
+              <TouchableWithoutFeedback
+                onPress={() => navigation.navigate("ForgotPassword")}
+              >
+                <View style={buttonStyle.secondaryText}>
+                  <Text style={textStyle.forgotPassword}>
+                    Forgotten Password?
+                  </Text>
+                </View>
+              </TouchableWithoutFeedback>
 
-        <Spacer />
-        <TouchableHighlight>
-          <View style={buttonStyle.primary}>
-            <Text>Clear</Text>
-          </View>
-        </TouchableHighlight>
+              <Spacer />
 
-        <Spacer />
+              <TouchableHighlight onPress={handleSubmit}>
+                <View style={buttonStyle.primary}>
+                  <Text>Login</Text>
+                </View>
+              </TouchableHighlight>
+              {/* 
+              <Spacer />
 
-        <TouchableHighlight
-          onPress={() => {
-            navigation.navigate("Signup");
-          }}
-        >
-          <View style={buttonStyle.secondary}>
-            <Text>Signup</Text>
-          </View>
-        </TouchableHighlight>
+              <TouchableHighlight>
+                <View style={buttonStyle.primary}>
+                  <Text>Clear</Text>
+                </View>
+              </TouchableHighlight> */}
+
+              <Spacer />
+
+              <TouchableHighlight
+                onPress={() => {
+                  navigation.navigate("Signup");
+                }}
+              >
+                <View style={buttonStyle.secondary}>
+                  <Text>Signup</Text>
+                </View>
+              </TouchableHighlight>
+            </View>
+          )}
+        </Formik>
       </View>
     </View>
   );
